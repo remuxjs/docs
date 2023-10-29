@@ -31,6 +31,7 @@ jobs:
     - name: Build docs
       run: |
         make mhtml
+        touch _build/.nojekyll
 
     - name: Deploy to GitHub Pages
       uses: crazy-max/ghaction-github-pages@v4
