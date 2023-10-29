@@ -30,7 +30,8 @@ jobs:
 
     - name: Build docs
       run: |
-        make mhtml
+        make BUILDDIR=_build/zh_CN mhtml
+        make -e SPHINXOPTS="-D language='en'" BUILDDIR=_build/en mhtml
         touch _build/.nojekyll
 
     - name: Deploy to GitHub Pages
