@@ -4,7 +4,7 @@
 
 remux 是一个非常方便的RPC库/框架，可以将本地函数和远程函数写在同一个文件中，通过`@remux`标记进行区分。
 
-下面是一个基本示例：
+下面是一个基本示例，也可以打开[stackblitz](https://stackblitz.com/github/remuxjs/example?file=src/main.js)进行体验：
 
 ```javascript
 // @remux server

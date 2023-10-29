@@ -30,3 +30,6 @@ language = 'zh_CN'
 
 html_theme = 'alabaster'
 html_static_path = ['_static']
+html_theme_options = {
+    'display_version': True
+}
