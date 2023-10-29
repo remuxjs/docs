@@ -1,0 +1,76 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, hzy
+# This file is distributed under the same license as the remuxjs package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: remuxjs\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-29 18:12+0800\n"
+"PO-Revision-Date: 2023-10-29 18:18+0800\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 3.0\n"
+
+#: ../../start/brief.md:1
+msgid "简介"
+msgstr "Introduction"
+
+#: ../../start/brief.md:3
+msgid "什么是 remux？"
+msgstr "What is remux?"
+
+#: ../../start/brief.md:5
+msgid "remux 是一个非常方便的RPC库/框架，可以将本地函数和远程函数写在同一个文件中，通过`@remux`标记进行区分。"
+msgstr "remux is a very handy RPC library/framework for writing local and remote functions in the same file, distinguished by the `@remux` tag."
+
+#: ../../start/brief.md:7
+msgid "下面是一个基本示例，也可以打开[stackblitz](https://stackblitz.com/github/remuxjs/example?file=src/main.js)进行体验："
+msgstr "Here's a basic example, or you can open [stackblitz](https://stackblitz.com/github/remuxjs/example?file=src/main.js) to experience it:"
+
+#: ../../start/brief.md:25
+msgid "上面的示例中，`@remux browser`部分的代码创建了一个按钮，并将点击事件注册为一个调用`serverFunction`的闭包，当用户点击按钮时，服务器会打印一行`Ouch!`。"
+msgstr ""
+"In the above example, the `@remux browser` part of the code creates a button and registers the click event as a closure that calls `serverFunction`, which prints the "
+"line `Ouch!` when the user clicks the button."
+
+#: ../../start/brief.md:27
+msgid ""
+"这个示例展示了remux的两个核心功能，**无缝远程调用**和**区分多端代码**，用`@remux`注释的函数会被视为远程函数，而代码块则会被视为只在特定的端运行。至于`@remux`后面分别会跟"
+"着的`server`和`browser`，这两个名字是随意起的，remux本身并不太关心开发者起什么名字，只要在编译时传入即可。"
+msgstr ""
+"This example demonstrates two core features of remux, **seamless remote calls** and **distinguishing code from multiple ends**. Functions annotated with `@remux` are "
+"treated as remotes, while blocks of code are treated as running only on a specific end. As for `@remux` followed by `server` and `browser`, these two names are "
+"arbitrary, remux itself does not really care what the developer names, as long as it is passed to compiler."
+
+#: ../../start/brief.md:29
+msgid "实现原理"
+msgstr "Implementation Principle"
+
+#: ../../start/brief.md:31
+msgid "remux提供了一个[babel插件](https://github.com/remuxjs/babel-plugin)用于转译源码。"
+msgstr "remux provides a [babel plugin](https://github.com/remuxjs/babel-plugin) to transpile source code."
+
+#: ../../start/brief.md:33
+msgid ""
+"它会将所有被`@remux`标记的函数封装为对`_remuxInvoke`函数的调用，同时也会在源码的开始位置添加一个`import { _remuxInvoke } from '@remux/lib'`，当然这里的`@remux/lib`可以通"
+"过参数改为其他库，只是默认是使用[@remux/lib](https://github.com/remuxjs/lib)。"
+msgstr ""
+"It will wrap all functions tagged by `@remux` as calls to the `_remuxInvoke` function, and also add an `import { _remuxInvoke } from '@remux/lib'` to the start of the "
+"source, where `@remux/lib` can of course be changed to other libraries by parameter, it just the default is to use [@remux/lib](https://github.com/remuxjs/lib)."
+
+#: ../../start/brief.md:35
+msgid ""
+"此外，对于所有使用`@remux`标记的代码块、变量声明和`import`语句，如果不是本端的则会被移除。通常并不需要用于标记变量声明，因为构建时的tree-shaking会确保没有使用的变量会被"
+"移除，所以如果存在一些服务器的密钥等敏感信息，请确保构建时打开了tree-shaking，不然就加标记来确保客户端代码中不会包含敏感信息。"
+msgstr ""
+"In addition, all code blocks, variable declarations and `import` statements that are tagged with `@remux` will be removed if they are not native. It is usually not "
+"necessary to mark variable declarations because tree-shaking at build time ensures that unused variables are removed, so if there is some sensitive information such as "
+"server keys, make sure that tree-shaking is turned on at build time, or else mark them to make sure that client-side code does not contain sensitive information."

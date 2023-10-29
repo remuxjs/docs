@@ -6,6 +6,11 @@
     <span class="fa fa-caret-down"></span>
   </span>
   <div class="rst-other-versions">
+    <dl>
+      <dt>Language</dt>
+      <dd><a class="lang-link">zh_CN</a></dd>
+      <dd><a class="lang-link">en</a></dd>
+    </dl>
     {%- if versions.tags %}
     <dl>
       <dt>Tags</dt>
@@ -27,5 +32,11 @@
       <dd><a href="https://github.com/remuxjs/docs" target="_blank">GitHub repo</a></dd>
     </dl>
   </div>
+  <script>
+    const current = document.documentElement.lang.replace('-', '_')
+    Array.from(document.getElementsByClassName('lang-link')).forEach(v => {
+      v.href = location.href.replace(current, v.innerText)
+    })
+  </script>
 </div>
 {%- endif %}

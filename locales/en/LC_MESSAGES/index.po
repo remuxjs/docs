@@ -1,0 +1,24 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, hzy
+# This file is distributed under the same license as the remuxjs package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: remuxjs\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-29 18:12+0800\n"
+"PO-Revision-Date: 2023-10-29 18:20+0800\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.13.1\n"
+"Last-Translator: \n"
+"X-Generator: Poedit 3.0\n"
+
+#: ../../index.rst:7
+msgid "Welcome to remuxjs's documentation!"
+msgstr "Welcome to remuxjs’s documentation!"
