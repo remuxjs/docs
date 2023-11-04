@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+	</head>
+	<body>
+		<h2>remux playground</h2>
+        <label>
+            role:
+            <input value="browser" id="input-role">
+        </label>
+        <label>
+            id:
+            <input value="/path/to/thisFile.js" id="input-id">
+        </label>
+        <label>
+            lib:
+            <input value="@remux/lib" placeholder="@remux/lib" id="input-lib">
+        </label>
+		<div id="container" style="margin-top: 10px; height: 600px; border: 1px solid grey"></div>
+
+		<script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs/loader.js"></script>
+        <!--<script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.23.2/babel.min.js"></script>-->
+        <script type="module">
+            import remux from 'https://cdn.jsdelivr.net/npm/@remux/babel-plugin@0.2.1/+esm'
+            import babel from 'https://cdn.jsdelivr.net/npm/@babel/standalone@7.23.2/+esm'
+
+            const originalCode = `// @remux server
+function serverFunction() {
+  console.log('Ouch!');
+}
+
+// @remux browser
+{
+  // put browser code here
+  const btn = document.createElement('button');
+  btn.innerText = 'Hit me';
+  btn.addEventListener('click', () => serverFunction());
+  document.body.appendChild(btn);
+}
+`
+			require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@0.44.0/min/vs' } });
+
+			require(['vs/editor/editor.main'], function () {
+				const diffEditor = monaco.editor.createDiffEditor(
+                    document.getElementById('container'),
+                    {
+                        readOnly: true,
+                        originalEditable: true
+                    }
+                );
+                {
+                    const role = document.getElementById('input-role')
+                    const id = document.getElementById('input-id')
+                    const lib = document.getElementById('input-lib')
+                    const modifiedTxt = babel.transform(originalCode, {
+                        presets: [],
+                        filename: id.value,
+                        plugins: [[remux, {role: role.value, id: id.value, lib: lib.value}]]
+                    }).code;
+
+                    const originalModel = monaco.editor.createModel(originalCode, 'javascript');
+                    function debounce(handler, ms) {
+                        let timerId = 0;
+                        return (...params) => {
+                            if (timerId) {
+                                clearTimeout(timerId);
+                            }
+                            timerId = setTimeout(() => handler(...params), ms);
+                        }
+                    }
+                    const changeHandler = debounce(() => {
+                        const code = originalModel.getValue();
+                        const modifiedCode = babel.transform(code, {
+                            presets: [],
+                            filename: id.value,
+                            plugins: [[remux, {role: role.value, id: id.value, lib: lib.value || '@remux/lib'}]]
+                        }).code;
+                        modifiedModel.setValue(modifiedCode);
+                    }, 1000);
+                    role.addEventListener('input', changeHandler);
+                    id.addEventListener('input', changeHandler);
+                    lib.addEventListener('input', changeHandler);
+                    originalModel.onDidChangeContent(changeHandler);
+                    const modifiedModel = monaco.editor.createModel(modifiedTxt, 'javascript');
+
+                    diffEditor.setModel({
+                        original: originalModel,
+                        modified: modifiedModel
+                    });
+                }
+			});
+		</script>
+		<script>
+			function xhr(url) {
+				var req = null;
+				return new Promise(
+					function (c, e) {
+						req = new XMLHttpRequest();
+						req.onreadystatechange = function () {
+							if (req._canceled) {
+								return;
+							}
+
+							if (req.readyState === 4) {
+								if ((req.status >= 200 && req.status < 300) || req.status === 1223) {
+									c(req);
+								} else {
+									e(req);
+								}
+								req.onreadystatechange = function () {};
+							}
+						};
+
+						req.open('GET', url, true);
+						req.responseType = '';
+
+						req.send(null);
+					},
+					function () {
+						req._canceled = true;
+						req.abort();
+					}
+				);
+			}
+		</script>
+	</body>
+</html>

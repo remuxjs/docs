@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Introduction &mdash; remuxjs  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/dark_mode_css/general.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/dark_mode_css/dark.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/dark_mode_js/default_dark.js"></script>
+        <script src="../_static/dark_mode_js/theme_switcher.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Quick Start" href="quickstart.html" />
+    <link rel="prev" title="Getting Started" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            remuxjs
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Getting Started</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#remux">What is remux?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">Implementation Principle</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="quickstart.html">Quick Start</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../compiler/index.html">Compiler</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">remuxjs</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">Getting Started</a></li>
+      <li class="breadcrumb-item active">Introduction</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/start/brief.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="id1">
+<h1>Introduction<a class="headerlink" href="#id1" title="Permalink to this heading"></a></h1>
+<section id="remux">
+<h2>What is remux?<a class="headerlink" href="#remux" title="Permalink to this heading"></a></h2>
+<p>remux is a very handy RPC library/framework for writing local and remote functions in the same file, distinguished by the <code class="docutils literal notranslate"><span class="pre">&#64;remux</span></code> tag.</p>
+<p>Here’s a basic example, or you can open <a class="reference external" href="https://stackblitz.com/github/remuxjs/example?file=src/main.js">stackblitz</a> to experience it:</p>
+<div class="highlight-javascript notranslate"><div class="highlight"><pre><span></span><span class="c1">// @remux server</span>
+<span class="kd">function</span><span class="w"> </span><span class="nx">serverFunction</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Ouch!&#39;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// @remux browser</span>
+<span class="p">{</span>
+<span class="w">  </span><span class="c1">// put browser code here</span>
+<span class="w">  </span><span class="kd">const</span><span class="w"> </span><span class="nx">btn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="nx">btn</span><span class="p">.</span><span class="nx">innerText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Hit me&#39;</span>
+<span class="w">  </span><span class="nx">btn</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">serverFunction</span><span class="p">())</span>
+<span class="w">  </span><span class="nb">document</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">btn</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In the above example, the <code class="docutils literal notranslate"><span class="pre">&#64;remux</span> <span class="pre">browser</span></code> part of the code creates a button and registers the click event as a closure that calls <code class="docutils literal notranslate"><span class="pre">serverFunction</span></code>, which prints the line <code class="docutils literal notranslate"><span class="pre">Ouch!</span></code> when the user clicks the button.</p>
+<p>This example demonstrates two core features of remux, <strong>seamless remote calls</strong> and <strong>distinguishing code from multiple ends</strong>. Functions annotated with <code class="docutils literal notranslate"><span class="pre">&#64;remux</span></code> are treated as remotes, while blocks of code are treated as running only on a specific end. As for <code class="docutils literal notranslate"><span class="pre">&#64;remux</span></code> followed by <code class="docutils literal notranslate"><span class="pre">server</span></code> and <code class="docutils literal notranslate"><span class="pre">browser</span></code>, these two names are arbitrary, remux itself does not really care what the developer names, as long as it is passed to compiler.</p>
+</section>
+<section id="id2">
+<h2>Implementation Principle<a class="headerlink" href="#id2" title="Permalink to this heading"></a></h2>
+<p>remux provides a <a class="reference external" href="https://github.com/remuxjs/babel-plugin">babel plugin</a> to transpile source code.</p>
+<p>It will wrap all functions tagged by <code class="docutils literal notranslate"><span class="pre">&#64;remux</span></code> as calls to the <code class="docutils literal notranslate"><span class="pre">_remuxInvoke</span></code> function, and also add an <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">{</span> <span class="pre">_remuxInvoke</span> <span class="pre">}</span> <span class="pre">from</span> <span class="pre">'&#64;remux/lib'</span></code> to the start of the source, where <code class="docutils literal notranslate"><span class="pre">&#64;remux/lib</span></code> can of course be changed to other libraries by parameter, it just the default is to use <a class="reference external" href="https://github.com/remuxjs/lib">&#64;remux/lib</a>.</p>
+<p>In addition, all code blocks, variable declarations and <code class="docutils literal notranslate"><span class="pre">import</span></code> statements that are tagged with <code class="docutils literal notranslate"><span class="pre">&#64;remux</span></code> will be removed if they are not native. It is usually not necessary to mark variable declarations because tree-shaking at build time ensures that unused variables are removed, so if there is some sensitive information such as server keys, make sure that tree-shaking is turned on at build time, or else mark them to make sure that client-side code does not contain sensitive information.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="quickstart.html" class="btn btn-neutral float-right" title="Quick Start" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, hzy.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+<div class="rst-versions" data-toggle="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    <span class="fa fa-book"> Other Versions</span>
+    v: master
+    <span class="fa fa-caret-down"></span>
+  </span>
+  <div class="rst-other-versions">
+    <dl>
+      <dt>Language</dt>
+      <dd><a class="lang-link">zh_CN</a></dd>
+      <dd><a class="lang-link">en</a></dd>
+    </dl>
+    <dl>
+      <dt>Branches</dt>
+      <dd><a href="brief.html">master</a></dd>
+    </dl>
+    <dl>
+      <dt>External links</dt>
+      <dd><a href="https://remuxjs.github.io/docs/zh_CN/master/_static/playground/" target="_blank">Playground</a></dd>
+      <dd><a href="https://stackblitz.com/github/remuxjs/example?file=src/main.js" target="_blank">Stackblitz example</a></dd>
+      <dd><a href="https://github.com/remuxjs/docs" target="_blank">GitHub repo</a></dd>
+    </dl>
+  </div>
+  <script>
+    const current = document.documentElement.lang.replace('-', '_')
+    Array.from(document.getElementsByClassName('lang-link')).forEach(v => {
+      v.href = location.href.replace(current, v.innerText)
+    })
+  </script>
+</div><script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
