@@ -10,3 +10,4 @@ Welcome to remuxjs's documentation!
    :maxdepth: 2
 
    start/index.rst
+   compiler/index.rst

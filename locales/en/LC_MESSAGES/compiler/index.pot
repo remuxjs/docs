@@ -1,0 +1,41 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2023, hzy
+# This file is distributed under the same license as the remuxjs package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: remuxjs \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-11-04 10:39+0800\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../../compiler/index.rst:2
+msgid "编译器"
+msgstr "Compiler"
+
+#: ../../compiler/index.rst:4
+msgid "remux使用 `babel插件 <https://github.com/remuxjs/babel-plugin>`_ 来实现代码转译，这个插件可以接收3个参数"
+msgstr "remux use `babel plugin <https://github.com/remuxjs/babel-plugin>`_ to transpile code, this plugin accept 3 parameters"
+
+#: ../../compiler/index.rst:6
+msgid "role 表示当前需要转译到的执行端"
+msgstr "role means the end to be run"
+
+#: ../../compiler/index.rst:7
+msgid "id 是一个索引，用来重定向文件，如果不填写则是文件绝对路径"
+msgstr "id is an index, to relocation file, it will be abosulute path if empty"
+
+#: ../../compiler/index.rst:8
+msgid "lib 导入 ``_remuxInvoke`` 的库，默认为 ``@remux/lib``"
+msgstr "lib the library to import ``_remuxInvoke``, default: ``@remux/lib``"
+
+#: ../../compiler/index.rst:10
+msgid "如果你想直接尝试remux转译代码，可以在 `playground <../_static/playground>`_ 中进行测试。"
+msgstr "If you want to directly try the remux transpiling code, you can test it in the `playground <../_static/playground>`_."
