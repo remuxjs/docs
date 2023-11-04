@@ -15,7 +15,7 @@
         </label>
         <label>
             lib:
-            <input placeholder="@remux/lib" id="input-lib">
+            <input value="@remux/lib" placeholder="@remux/lib" id="input-lib">
         </label>
 		<div id="container" style="margin-top: 10px; height: 600px; border: 1px solid grey"></div>
 
@@ -53,7 +53,6 @@ function serverFunction() {
                     const role = document.getElementById('input-role')
                     const id = document.getElementById('input-id')
                     const lib = document.getElementById('input-lib')
-                    // console.debug({role: role.value, id: id.value, lib: lib.value})
                     const modifiedTxt = babel.transform(originalCode, {
                         presets: [],
                         filename: id.value,
@@ -71,7 +70,6 @@ function serverFunction() {
                         }
                     }
                     const changeHandler = debounce(() => {
-                        console.debug(lib.value)
                         const code = originalModel.getValue();
                         const modifiedCode = babel.transform(code, {
                             presets: [],
